@@ -14,22 +14,25 @@
   "babel": {
     "presets": [
       "@babel/preset-react",
-        [
-          "@babel/preset-env",
-          {
-            "targets": {
-              "node": 10
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": 10
           }
-          }
-        ]
+        }
       ]
+    ]
   },
   "dependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "@google-cloud/vision": "^1.2.0",
     "axios": "^0.19.0",
     "babel-loader": "^8.0.6",
+    "dotenv": "^8.1.0",
+    "dotenv-json": "^1.0.0",
     "express": "^4.17.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
