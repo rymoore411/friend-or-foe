@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 const dotenv = require('dotenv');
 require('dotenv-json')();
 const fileUpload = require('express-fileupload');
+const findSpider = require('./utils');
 
 app.use(fileUpload());
 
@@ -25,15 +26,21 @@ const client = new vision.ImageAnnotatorClient({
 });
 
 
+//Spider stuffs
+
+const spiderBros = ['black widow spider', 'wolf spider', 'brown recluse spider', 'hobo spider', 'southern black widow'];
 
 app.post('/spider', async (req, res, next) => {
 
-    // Performs label detection on the image file
-    const [result] = await client.labelDetection(req.files.file.data);
-    const labels = result.labelAnnotations;
-    console.log('Labels:');
-    labels.forEach(label => console.log(label.description));
-
+  try{
+    const [web] = await client.webDetection(req.files.file.data);
+    const entities = web.webDetection.webEntities;
+    const badSpider = findSpider(entities, spiderBros);
+    res.send(badSpider[0]);
+  }
+  catch(ex){
+    next(ex);
+  }
 
 })
 
