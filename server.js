@@ -3,7 +3,10 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT || 3000;
 const dotenv = require('dotenv');
-require("dotenv-json")();
+require('dotenv-json')();
+const fileUpload = require('express-fileupload');
+
+app.use(fileUpload());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -25,9 +28,8 @@ const client = new vision.ImageAnnotatorClient({
 
 app.post('/spider', async (req, res, next) => {
 
-    console.log(req.body[0].path);
     // Performs label detection on the image file
-    const [result] = await client.labelDetection(req.body[0].path);
+    const [result] = await client.labelDetection(req.files.file.data);
     const labels = result.labelAnnotations;
     console.log('Labels:');
     labels.forEach(label => console.log(label.description));
