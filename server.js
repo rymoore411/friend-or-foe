@@ -18,15 +18,15 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
 app.get('/', (req, res, next)=> res.sendFile(path.join(__dirname, 'index.html')));
 
-const {auth} = require('google-auth-library');
+// const {auth} = require('google-auth-library');
 
-// load the environment variable with our keys
-const keysEnvVar = process.env['CREDS'];
-if (!keysEnvVar) {
-  throw new Error('The $CREDS environment variable was not found!');
-}
-const keys = JSON.parse(keysEnvVar);
-const getClient = auth.fromJSON(keys);
+// // load the environment variable with our keys
+// const keysEnvVar = process.env['CREDS'];
+// if (!keysEnvVar) {
+//   throw new Error('The $CREDS environment variable was not found!');
+// }
+// const keys = JSON.parse(keysEnvVar);
+// const getClient = auth.fromJSON(keys);
 
 //Google Vision Setup
 const vision = require('@google-cloud/vision');
