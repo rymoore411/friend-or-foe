@@ -32,15 +32,15 @@ const spiderBros = ['black widow spider', 'wolf spider', 'brown recluse spider',
 app.post('/spider', async (req, res, next) => {
 
   try{
+    console.log('1');
     const [web] = await client.webDetection(req.files.file.data);
+    console.log('2')
     const entities = web.webDetection.webEntities;
-    console.log(entities);
     const badSpider = findSpider(entities, spiderBros);
     res.send(badSpider[0]);
   }
   catch(ex){
     next(ex);
-    console.log('ut oh');
   }
 
 })
