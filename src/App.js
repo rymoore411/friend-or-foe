@@ -28,8 +28,11 @@ export default class App extends Component {
 
     const data = new FormData()
     data.append('file', file[0]);
+    console.log('1')
     const response = await axios.post('/spider', data);
+    console.log('2');
     const spiderBro = response.data;
+    console.log('3');
     spiderBro.score >= .7 ? this.setState({friend: false}) : this.setState({friend: true});
   }
 
