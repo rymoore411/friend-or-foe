@@ -30,7 +30,13 @@ app.get('/', (req, res, next)=> res.sendFile(path.join(__dirname, 'index.html'))
 
 //Google Vision Setup
 const vision = require('@google-cloud/vision');
-const client = new vision.ImageAnnotatorClient();
+const client = new vision.ImageAnnotatorClient({
+  projectId: process.env.PROJECT_ID,
+  credentials: {
+    private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.GOOGLE_CLIENT_EMAIL
+  }
+});
 
 
 //Spider stuffs
