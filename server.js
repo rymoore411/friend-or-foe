@@ -34,11 +34,13 @@ app.post('/spider', async (req, res, next) => {
   try{
     const [web] = await client.webDetection(req.files.file.data);
     const entities = web.webDetection.webEntities;
+    console.log(entities);
     const badSpider = findSpider(entities, spiderBros);
     res.send(badSpider[0]);
   }
   catch(ex){
     next(ex);
+    console.log('ut oh');
   }
 
 })
