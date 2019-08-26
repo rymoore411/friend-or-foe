@@ -3,7 +3,6 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT || 3000;
 const dotenv = require('dotenv');
-require('dotenv-json')();
 const fileUpload = require('express-fileupload');
 const findSpider = require('./utils');
 
