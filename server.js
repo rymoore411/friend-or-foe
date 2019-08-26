@@ -22,7 +22,7 @@ app.get('/', (req, res, next)=> res.sendFile(path.join(__dirname, 'index.html'))
 //Google Vision Setup
 const vision = require('@google-cloud/vision');
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: '.env.json'
+  keyFilename: '.env'
 });
 
 

@@ -31,7 +31,6 @@ export default class App extends Component {
     const response = await axios.post('/spider', data);
     const spiderBro = response.data;
     spiderBro.score >= .7 ? this.setState({friend: false}) : this.setState({friend: true});
-    console.log(this.state.friend);
   }
 
   render() {
