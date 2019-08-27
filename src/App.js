@@ -36,32 +36,44 @@ export default class App extends Component {
     const spiderBro = response.data;
     // const spiderImage = storeImage.data;
     this.setState({species: spiderBro.description, file: URL.createObjectURL(file[0])});
-    console.log(spiderBro);
     spiderBro.score >= .7 ? this.setState({friend: false}) : this.setState({friend: true});
   }
 
   render() {
     const {image, friend, spinner, species, spiderImage, file} = this.state;
     const {handleDrop, handleClick} = this;
-    console.log(spiderImage)
 
     if(friend === null){
       return (
-        <div className="container-fluid">
-          <h2>Spider Bro App</h2>
-          <Dropzone onDrop={handleDrop}>
+        <div className="container-fluid" >
+
+        <div className="text-center">
+
+        <Dropzone onDrop={handleDrop}>
           {({getRootProps, getInputProps}) => (
             <section>
-              <div {...getRootProps()}>
+              <div {...getRootProps()} className="text-center">
                 <input {...getInputProps()}/>
-                  <p>Drag spider pics on spider bro</p>
                   <MDBAnimation type={spinner === false ? 'bounce' : 'flash'} infinite>
-                  <img src={image} className="img-fluid" style={{maxWidth: '10%'}}/>
+                  <img src={image} className="fluid"  style={{maxWidth: '25%'}}/>
                   </MDBAnimation>
               </div>
             </section>
           )}
           </Dropzone>
+
+
+        <div className="card-body">
+
+
+          <h4 className="card-title"><a>Spider Bro App</a></h4>
+
+          <p className="card-text">Drag spider pics on spider bro</p>
+
+
+        </div>
+
+        </div>
         </div>
       )
     }
@@ -93,18 +105,19 @@ export default class App extends Component {
         <div className="container-fluid" style={{display: 'flex', maxWidth: '40%', alignContent: 'center', justifyContent: 'center'}}>
           <div className="card">
             <div className="view overlay">
-              <img className="card-img-top" src={file} alt="Card image cap"></img>
-              <a>
+              <img className="card-img-top" src={file} alt="Card image cap" ></img>
+              <a href={`https://en.wikipedia.org/w/index.php?search=${species}&title=Special%3ASearch&go=Go`}>
                 <div className="mask rgba-white-slight"></div>
               </a>
             </div>
 
 
           <div className="card-body elegant-color white-text rounded-bottom">
-            <a className="activator waves-effect mr-4"><i className="fas fa-share-alt white-text"></i></a>
-            <h4 className="card-title">Watch out!</h4>
+            <a className="activator waves-effect mr-4" ><i className="fas fa-share-alt white-text"></i>{' '}{species}</a>
+            <h4 className="card-title">Watch out! {' '}{species}!</h4>
+            <p>Click spider bro for spider answers</p>
             <hr className="hr-light"/>
-            <a href="#!" className="white-text d-flex justify-content-end">{species}</a>
+            <a href="#!" className="white-text d-flex justify-content-end"></a>
             <a href="#" className="btn btn-primary" onClick={handleClick}>Find More Spider Bros</a>
           </div>
         </div>
