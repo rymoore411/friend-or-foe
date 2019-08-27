@@ -18,16 +18,6 @@ app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
 app.get('/', (req, res, next)=> res.sendFile(path.join(__dirname, 'index.html')));
 
-// const {auth} = require('google-auth-library');
-
-// // load the environment variable with our keys
-// const keysEnvVar = process.env['CREDS'];
-// if (!keysEnvVar) {
-//   throw new Error('The $CREDS environment variable was not found!');
-// }
-// const keys = JSON.parse(keysEnvVar);
-// const getClient = auth.fromJSON(keys);
-
 //Google Vision Setup
 const vision = require('@google-cloud/vision');
 const client = new vision.ImageAnnotatorClient({
@@ -41,7 +31,7 @@ const client = new vision.ImageAnnotatorClient({
 
 //Spider stuffs
 
-const spiderBros = ['black widow spider', 'wolf spider', 'brown recluse spider', 'hobo spider', 'southern black widow'];
+const spiderBros = ['black widow spider', 'wolf spider', 'brown recluse spider', 'hobo spider', 'southern black widow', 'armed spider', 'western black widow', 'redback spider', 'sydney funnel-web spider', 'funnel-web spider', 'brazilian wandering spider', 'yellow sac spider', 'brown widow spider', 'red widow spider', 'six-eyed sand spider', 'chilean recluse spider', 'northern funnel web spider', 'funnel web spider', 'sydney funnel web spider', 'red-legged widow spider', 'noble false widow', 'katipo', 'fishing spider'];
 
 app.post('/spider', async (req, res, next) => {
 
@@ -56,4 +46,19 @@ app.post('/spider', async (req, res, next) => {
   }
 
 })
+
+
+// app.post('/image', async (req, res, next) => {
+
+//   try{
+//     console.log(req.file);
+//     const values = Object.values(req.files);
+//     console.log(req.files.file.data);
+//     res.send(req.files.file.data);
+//   }
+//   catch(ex){
+//     next(ex);
+//   }
+
+// })
 

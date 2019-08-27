@@ -10,8 +10,9 @@ export default class App extends Component {
     this.state = {
       image: 'https://cdn.pixabay.com/photo/2013/07/12/12/55/black-widow-146550_1280.png',
       friend: null,
-      name: '',
+      species: '',
       spinner: false,
+      spiderImage: 'https://cdn.pixabay.com/photo/2013/07/12/12/55/black-widow-146550_1280.png',
     }
     this.handleDrop = this.handleDrop.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -28,17 +29,20 @@ export default class App extends Component {
 
     const data = new FormData()
     data.append('file', file[0]);
-    console.log('1')
+    // const storeImage = await axios.post('/image', data);
     const response = await axios.post('/spider', data);
-    console.log('2');
+
     const spiderBro = response.data;
-    console.log('3');
+    // const spiderImage = storeImage.data;
+    this.setState({species: spiderBro.description, spiderImage: file[0].path});
+    console.log(spiderBro);
     spiderBro.score >= .7 ? this.setState({friend: false}) : this.setState({friend: true});
   }
 
   render() {
-    const {image, friend, spinner} = this.state;
+    const {image, friend, spinner, species, spiderImage} = this.state;
     const {handleDrop, handleClick} = this;
+    console.log(spiderImage)
 
     if(friend === null){
       return (
@@ -88,7 +92,7 @@ export default class App extends Component {
         <div className="container-fluid" style={{display: 'flex', maxWidth: '40%', alignContent: 'center', justifyContent: 'center'}}>
           <div className="card">
             <div className="view overlay">
-              <img className="card-img-top" src="https://images.pexels.com/photos/2665108/pexels-photo-2665108.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" alt="Card image cap"/>
+              <img className="card-img-top" src={spiderImage} alt="Card image cap"></img>
               <a>
                 <div className="mask rgba-white-slight"></div>
               </a>
@@ -99,7 +103,7 @@ export default class App extends Component {
             <a className="activator waves-effect mr-4"><i className="fas fa-share-alt white-text"></i></a>
             <h4 className="card-title">Watch out!</h4>
             <hr className="hr-light"/>
-            <a href="#!" className="white-text d-flex justify-content-end"></a>
+            <a href="#!" className="white-text d-flex justify-content-end">{species}</a>
             <a href="#" className="btn btn-primary" onClick={handleClick}>Find More Spider Bros</a>
           </div>
         </div>

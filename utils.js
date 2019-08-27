@@ -1,7 +1,7 @@
 function findSpider (spiderBro, webDetect) {
 
-  const smaller = webDetect.length < spiderBro.length ? webDetect : spiderBro;
-  const larger = webDetect.length >= spiderBro.length ? webDetect : spiderBro;
+  const larger = webDetect.length < spiderBro.length ? webDetect : spiderBro;
+  const smaller = webDetect.length >= spiderBro.length ? webDetect : spiderBro;
 
   const hashSpider = {};
 
