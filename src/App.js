@@ -13,6 +13,7 @@ export default class App extends Component {
       species: '',
       spinner: false,
       spiderImage: 'https://cdn.pixabay.com/photo/2013/07/12/12/55/black-widow-146550_1280.png',
+      file: null,
     }
     this.handleDrop = this.handleDrop.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -34,13 +35,13 @@ export default class App extends Component {
 
     const spiderBro = response.data;
     // const spiderImage = storeImage.data;
-    this.setState({species: spiderBro.description, spiderImage: file[0].path});
+    this.setState({species: spiderBro.description, file: URL.createObjectURL(file[0])});
     console.log(spiderBro);
     spiderBro.score >= .7 ? this.setState({friend: false}) : this.setState({friend: true});
   }
 
   render() {
-    const {image, friend, spinner, species, spiderImage} = this.state;
+    const {image, friend, spinner, species, spiderImage, file} = this.state;
     const {handleDrop, handleClick} = this;
     console.log(spiderImage)
 
@@ -92,7 +93,7 @@ export default class App extends Component {
         <div className="container-fluid" style={{display: 'flex', maxWidth: '40%', alignContent: 'center', justifyContent: 'center'}}>
           <div className="card">
             <div className="view overlay">
-              <img className="card-img-top" src={spiderImage} alt="Card image cap"></img>
+              <img className="card-img-top" src={file} alt="Card image cap"></img>
               <a>
                 <div className="mask rgba-white-slight"></div>
               </a>
