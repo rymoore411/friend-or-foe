@@ -39,7 +39,14 @@ app.post('/spider', async (req, res, next) => {
     const [web] = await client.webDetection(req.files.file.data);
     const entities = web.webDetection.webEntities;
     const badSpider = findSpider(entities, spiderBros);
-    res.send(badSpider[0]);
+    if(badSpider.length > 0 && badSpider[0].score > .7){
+      badSpider[0].danger = true;
+      res.send(badSpider[0]);
+    }
+    else{
+      entities[1].danger = false;
+      res.send(entities[1]);
+    }
   }
   catch(ex){
     next(ex);

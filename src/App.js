@@ -36,7 +36,7 @@ export default class App extends Component {
     const spiderBro = response.data;
     // const spiderImage = storeImage.data;
     this.setState({species: spiderBro.description, file: URL.createObjectURL(file[0])});
-    spiderBro.score >= .7 ? this.setState({friend: false}) : this.setState({friend: true});
+    spiderBro.danger === true ? this.setState({friend: false}) : this.setState({friend: true});
   }
 
   render() {
@@ -82,16 +82,17 @@ export default class App extends Component {
         <div className="container-fluid" style={{display: 'flex', maxWidth: '40%', alignContent: 'center', justifyContent: 'center'}}>
           <div className="card">
             <div className="view overlay">
-              <img className="card-img-top" src="https://cdn.pixabay.com/photo/2014/04/02/16/29/spider-307448_1280.png" alt="Card image cap"/>
-              <a>
+              <img className="card-img-top" src={file} alt="Card image cap" ></img>
+              <a href={`https://en.wikipedia.org/w/index.php?search=${species}&title=Special%3ASearch&go=Go`}>
                 <div className="mask rgba-white-slight"></div>
               </a>
             </div>
 
 
           <div className="card-body elegant-color white-text rounded-bottom">
-            <a className="activator waves-effect mr-4"><i className="fas fa-share-alt white-text"></i></a>
-            <h4 className="card-title">He's Chill</h4>
+            <a className="activator waves-effect mr-4" ><i className="fas fa-share-alt white-text"></i>{' '}{species}</a>
+            <h4 className="card-title">He's a Chill {' '}{species}!</h4>
+            <p>Click spider bro for spider answers</p>
             <hr className="hr-light"/>
             <a href="#!" className="white-text d-flex justify-content-end"></a>
             <a href="#" className="btn btn-primary" onClick={handleClick}>Find More Spider Bros</a>
