@@ -42,9 +42,13 @@ app.post('/spider', async (req, res, next) => {
       badSpider[0].danger = true;
       res.send(badSpider[0]);
     }
-    else{
+    else if(entities[0].description.toLowerCase() === 'spider') {
       entities[1].danger = false;
       res.send(entities[1]);
+    }
+    else {
+      entities[0].danger = false;
+      res.send(entities[0]);
     }
   }
   catch(ex){

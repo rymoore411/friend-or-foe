@@ -2,13 +2,13 @@ import React, {Component} from 'react';
 import {HashRouter, Route } from 'react-router-dom';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import { MDBAnimation} from 'mdbreact';
+import { MDBAnimation, MDBBtn} from 'mdbreact';
 
 export default class App extends Component {
   constructor(){
     super();
     this.state = {
-      image: 'https://cdn.pixabay.com/photo/2013/07/12/12/55/black-widow-146550_1280.png',
+      image: 'https://cdn.pixabay.com/photo/2016/08/23/18/50/spider-1615195_1280.png',
       friend: null,
       species: '',
       spinner: false,
@@ -44,12 +44,13 @@ export default class App extends Component {
       return (
         <div className="container-fluid" >
           <div className="text-center">
+            <MDBBtn gradient="near-moon">Spider Bro App</MDBBtn>
             <Dropzone onDrop={handleDrop}>
             {({getRootProps, getInputProps}) => (
               <section>
                 <div {...getRootProps()} className="text-center">
                   <input {...getInputProps()}/>
-                    <MDBAnimation type={spinner === false ? 'bounce' : 'flash'} infinite>
+                    <MDBAnimation type={spinner === false ? 'bounce' : 'flash'} infinite>{spinner === true ? <div><MDBBtn gradient="near-moon">Spider Bro Is Machine Learning</MDBBtn></div> : ''}
                     <img src={image} className="fluid"  style={{maxWidth: '25%'}}/>
                     </MDBAnimation>
                 </div>
@@ -57,8 +58,7 @@ export default class App extends Component {
             )}
             </Dropzone>
               <div className="card-body">
-                <h4 className="card-title"><a>Spider Bro App</a></h4>
-                <p className="card-text">Drag spider pics on spider bro</p>
+                <MDBBtn gradient="near-moon">Drag spider pics on spider bro</MDBBtn>
               </div>
             </div>
           </div>
@@ -66,10 +66,12 @@ export default class App extends Component {
     }
     else if(friend === true){
       return(
-        <div className="container-fluid" style={{display: 'flex', maxWidth: '25%', alignContent: 'center', justifyContent: 'center'}}>
-          <div className="card">
+        <div className="container-fluid" style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
+          <div className="card" style={{maxWidth: '30%'}}>
             <div className="view overlay">
-              <img className="card-img-top" src={file} alt="Card image cap" ></img>
+            <MDBAnimation type='wobble'>
+                    <img src={file} className="card-img-top" alt="Card image cap"/>
+            </MDBAnimation>
               <a href={`https://en.wikipedia.org/w/index.php?search=${species}&title=Special%3ASearch&go=Go`}>
                 <div className="mask rgba-white-slight"></div>
               </a>
@@ -79,7 +81,7 @@ export default class App extends Component {
           <div className="card-body elegant-color white-text rounded-bottom">
             <a className="activator waves-effect mr-4" ><i className="fas fa-share-alt white-text"></i>{' '}{species}</a>
             <h4 className="card-title">He's a Chill {' '}{species}!</h4>
-            <p>Click spider bro for spider answers</p>
+            <a href={`https://en.wikipedia.org/w/index.php?search=${species}&title=Special%3ASearch&go=Go`}>Click here for more {species} bro info</a>
             <hr className="hr-light"/>
             <a href="#!" className="white-text d-flex justify-content-end"></a>
             <a href="#" className="btn btn-primary" onClick={handleClick}>Find More Spider Bros</a>
@@ -90,10 +92,12 @@ export default class App extends Component {
     }
     else{
       return(
-        <div className="container-fluid" style={{display: 'flex', maxWidth: '25%', alignContent: 'center', justifyContent: 'center'}}>
-          <div className="card">
+        <div className="container-fluid" style={{display: 'flex', alignContent: 'center', justifyContent: 'center'}}>
+          <div className="card" style={{maxWidth: '30%'}}>
             <div className="view overlay">
-              <img className="card-img-top" src={file} alt="Card image cap" ></img>
+              <MDBAnimation type='wobble'>
+                      <img src={file} className="card-img-top" alt="Card image cap"/>
+              </MDBAnimation>
               <a href={`https://en.wikipedia.org/w/index.php?search=${species}&title=Special%3ASearch&go=Go`}>
                 <div className="mask rgba-white-slight"></div>
               </a>
@@ -102,7 +106,7 @@ export default class App extends Component {
           <div className="card-body elegant-color white-text rounded-bottom">
             <a className="activator waves-effect mr-4" ><i className="fas fa-share-alt white-text"></i>{' '}{species}</a>
             <h4 className="card-title">Watch out! {' '}{species}!</h4>
-            <p>Click spider bro for spider answers</p>
+            <a href={`https://en.wikipedia.org/w/index.php?search=${species}&title=Special%3ASearch&go=Go`}>Click here for more {species} bro info</a>
             <hr className="hr-light"/>
             <a href="#!" className="white-text d-flex justify-content-end"></a>
             <a href="#" className="btn btn-primary" onClick={handleClick}>Find More Spider Bros</a>
