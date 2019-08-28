@@ -12,7 +12,6 @@ export default class App extends Component {
       friend: null,
       species: '',
       spinner: false,
-      spiderImage: 'https://cdn.pixabay.com/photo/2013/07/12/12/55/black-widow-146550_1280.png',
       file: null,
     }
     this.handleDrop = this.handleDrop.bind(this);
@@ -30,56 +29,44 @@ export default class App extends Component {
 
     const data = new FormData()
     data.append('file', file[0]);
-    // const storeImage = await axios.post('/image', data);
     const response = await axios.post('/spider', data);
 
     const spiderBro = response.data;
-    // const spiderImage = storeImage.data;
     this.setState({species: spiderBro.description, file: URL.createObjectURL(file[0])});
     spiderBro.danger === true ? this.setState({friend: false}) : this.setState({friend: true});
   }
 
   render() {
-    const {image, friend, spinner, species, spiderImage, file} = this.state;
+    const {image, friend, spinner, species, file} = this.state;
     const {handleDrop, handleClick} = this;
 
     if(friend === null){
       return (
         <div className="container-fluid" >
-
-        <div className="text-center">
-
-        <Dropzone onDrop={handleDrop}>
-          {({getRootProps, getInputProps}) => (
-            <section>
-              <div {...getRootProps()} className="text-center">
-                <input {...getInputProps()}/>
-                  <MDBAnimation type={spinner === false ? 'bounce' : 'flash'} infinite>
-                  <img src={image} className="fluid"  style={{maxWidth: '25%'}}/>
-                  </MDBAnimation>
+          <div className="text-center">
+            <Dropzone onDrop={handleDrop}>
+            {({getRootProps, getInputProps}) => (
+              <section>
+                <div {...getRootProps()} className="text-center">
+                  <input {...getInputProps()}/>
+                    <MDBAnimation type={spinner === false ? 'bounce' : 'flash'} infinite>
+                    <img src={image} className="fluid"  style={{maxWidth: '25%'}}/>
+                    </MDBAnimation>
+                </div>
+              </section>
+            )}
+            </Dropzone>
+              <div className="card-body">
+                <h4 className="card-title"><a>Spider Bro App</a></h4>
+                <p className="card-text">Drag spider pics on spider bro</p>
               </div>
-            </section>
-          )}
-          </Dropzone>
-
-
-        <div className="card-body">
-
-
-          <h4 className="card-title"><a>Spider Bro App</a></h4>
-
-          <p className="card-text">Drag spider pics on spider bro</p>
-
-
-        </div>
-
-        </div>
-        </div>
+            </div>
+          </div>
       )
     }
     else if(friend === true){
       return(
-        <div className="container-fluid" style={{display: 'flex', maxWidth: '40%', alignContent: 'center', justifyContent: 'center'}}>
+        <div className="container-fluid" style={{display: 'flex', maxWidth: '25%', alignContent: 'center', justifyContent: 'center'}}>
           <div className="card">
             <div className="view overlay">
               <img className="card-img-top" src={file} alt="Card image cap" ></img>
@@ -103,7 +90,7 @@ export default class App extends Component {
     }
     else{
       return(
-        <div className="container-fluid" style={{display: 'flex', maxWidth: '40%', alignContent: 'center', justifyContent: 'center'}}>
+        <div className="container-fluid" style={{display: 'flex', maxWidth: '25%', alignContent: 'center', justifyContent: 'center'}}>
           <div className="card">
             <div className="view overlay">
               <img className="card-img-top" src={file} alt="Card image cap" ></img>
@@ -111,7 +98,6 @@ export default class App extends Component {
                 <div className="mask rgba-white-slight"></div>
               </a>
             </div>
-
 
           <div className="card-body elegant-color white-text rounded-bottom">
             <a className="activator waves-effect mr-4" ><i className="fas fa-share-alt white-text"></i>{' '}{species}</a>
@@ -126,6 +112,4 @@ export default class App extends Component {
       )
     }
   }
-
-
 }

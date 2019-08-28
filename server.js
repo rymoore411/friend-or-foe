@@ -30,7 +30,6 @@ const client = new vision.ImageAnnotatorClient({
 
 
 //Spider stuffs
-
 const spiderBros = ['black widow spider', 'wolf spider', 'brown recluse spider', 'hobo spider', 'southern black widow', 'armed spider', 'western black widow', 'redback spider', 'sydney funnel-web spider', 'funnel-web spider', 'brazilian wandering spider', 'yellow sac spider', 'brown widow spider', 'red widow spider', 'six-eyed sand spider', 'chilean recluse spider', 'northern funnel web spider', 'funnel web spider', 'sydney funnel web spider', 'red-legged widow spider', 'noble false widow', 'katipo', 'fishing spider'];
 
 app.post('/spider', async (req, res, next) => {
@@ -53,19 +52,3 @@ app.post('/spider', async (req, res, next) => {
   }
 
 })
-
-
-// app.post('/image', async (req, res, next) => {
-
-//   try{
-//     console.log(req.file);
-//     const values = Object.values(req.files);
-//     console.log(req.files.file.data);
-//     res.send(req.files.file.data);
-//   }
-//   catch(ex){
-//     next(ex);
-//   }
-
-// })
-
