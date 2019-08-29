@@ -80,7 +80,7 @@ export default class App extends Component {
 
           <div className="card-body elegant-color white-text rounded-bottom">
             <a className="activator waves-effect mr-4" ><i className="fas fa-share-alt white-text"></i>{' '}{species}</a>
-            <h4 className="card-title">He's a Chill {' '}{species}!</h4>
+            <h4 className="card-title">It's a Chill {' '}{species}!</h4>
             <a href={`https://en.wikipedia.org/w/index.php?search=${species}&title=Special%3ASearch&go=Go`}>Click here for more {species} bro info</a>
             <hr className="hr-light"/>
             <a href="#!" className="white-text d-flex justify-content-end"></a>
