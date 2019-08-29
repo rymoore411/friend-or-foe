@@ -51,7 +51,7 @@ export default class App extends Component {
                 <div {...getRootProps()} className="text-center">
                   <input {...getInputProps()}/>
                     <MDBAnimation type={spinner === false ? 'bounce' : 'flash'} infinite>{spinner === true ? <div><MDBBtn gradient="near-moon">Spider Bro Is Machine Learning</MDBBtn></div> : ''}
-                    <img src={image} className="fluid"  style={{maxWidth: '25%'}}/>
+                    <img src={image} className="fluid"  style={{maxWidth: '40%'}}/>
                     </MDBAnimation>
                 </div>
               </section>

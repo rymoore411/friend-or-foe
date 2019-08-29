@@ -30,15 +30,15 @@ const client = new vision.ImageAnnotatorClient({
 
 
 //Spider stuffs
-const spiderBros = ['black widow spider', 'wolf spider', 'brown recluse spider', 'hobo spider', 'southern black widow', 'armed spider', 'western black widow', 'redback spider', 'sydney funnel-web spider', 'funnel-web spider', 'brazilian wandering spider', 'yellow sac spider', 'brown widow spider', 'red widow spider', 'six-eyed sand spider', 'chilean recluse spider', 'northern funnel web spider', 'funnel web spider', 'sydney funnel web spider', 'red-legged widow spider', 'noble false widow', 'katipo', 'fishing spider'];
+const spiderBros = ['black widow spider', 'wolf spider', 'brown recluse spider', 'hobo spider', 'southern black widow', 'armed spider', 'western black widow', 'redback spider', 'sydney funnel-web spider', 'funnel-web spider', 'brazilian wandering spider', 'yellow sac spider', 'brown widow spider', 'red widow spider', 'six-eyed sand spider', 'chilean recluse spider', 'northern funnel web spider', 'funnel web spider', 'sydney funnel web spider', 'red-legged widow spider', 'noble false widow', 'katipo', 'fishing spider', 'phoneutria fera', 'phoneutria'];
 
 app.post('/spider', async (req, res, next) => {
 
   try{
     const [web] = await client.webDetection(req.files.file.data);
-    const entities = web.webDetection.webEntities;
+    const entities = web.webDetection.webEntities.filter(el => (el.description !== ''));
     const badSpider = findSpider(entities, spiderBros);
-    if(badSpider.length > 0 && badSpider[0].score > .7){
+    if(badSpider.length > 0 && badSpider[0].score > .6){
       badSpider[0].danger = true;
       res.send(badSpider[0]);
     }
