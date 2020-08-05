@@ -35,7 +35,7 @@
     "dotenv": "^8.1.0",
     "dotenv-json": "^1.0.0",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.5",
+    "express-fileupload": "^1.1.9",
     "google-auth-library": "^5.2.0",
     "jquery": "^3.4.1",
     "mdbootstrap": "^4.8.8",
